@@ -4,11 +4,6 @@ import { FileUpload } from './components/FileUpload';
 import { resumeApi } from './services/api';
 import { BulletRewriteResponse, ResumeUploadResponse } from './types';
 import {
-  CheckCircle2,
-  Terminal,
-  Cpu,
-  Database,
-  Layers,
   ArrowRight,
   Sparkles,
   RefreshCw,
@@ -22,7 +17,7 @@ export const App: React.FC = () => {
   const [healthData, setHealthData] = useState<any>(null);
   const [uploadedResume, setUploadedResume] = useState<ResumeUploadResponse | null>(null);
   
-  // Interactive Copilot Test State
+  // Interactive Copilot State
   const [sampleBullet, setSampleBullet] = useState('worked on python apis and fixed bugs for user login');
   const [isRewriting, setIsRewriting] = useState(false);
   const [rewriteResult, setRewriteResult] = useState<BulletRewriteResponse | null>(null);
@@ -42,7 +37,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     checkServerHealth();
-    const interval = setInterval(checkServerHealth, 10000);
+    const interval = setInterval(checkServerHealth, 15000);
     return () => clearInterval(interval);
   }, []);
 
@@ -72,86 +67,33 @@ export const App: React.FC = () => {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-4 shadow-sm">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
-            <span>Stage 2 Completed: Resume Ingestion & Deterministic ATS Audit</span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             AI-Powered Resume Analyzer <br />
             <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
               & Career Copilot
             </span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            Enterprise-grade ATS compliance auditing, semantic job-description matching, and high-impact resume enhancement built with FastAPI, SQLite WAL mode, and React.js.
+          <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Instant ATS parsability auditing, formatting compliance checks, and high-impact resume enhancement.
           </p>
         </div>
 
-        {/* System Architecture Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
-              <Cpu className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">FastAPI Backend</h3>
-            <p className="text-sm text-slate-600 mb-3">
-              Asynchronous Python 3.11+ REST API running via <code className="text-indigo-600 font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">python server.py</code>.
-            </p>
-            <div className="flex items-center text-xs font-medium text-emerald-600">
-              <CheckCircle2 className="w-4 h-4 mr-1" />
-              Swagger UI ready at :8000/docs
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
-              <Database className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">SQLite WAL Storage</h3>
-            <p className="text-sm text-slate-600 mb-3">
-              Zero-latency relational database with Write-Ahead Logging for non-blocking concurrent writes and SHA-256 caching.
-            </p>
-            <div className="flex items-center text-xs font-medium text-emerald-600">
-              <CheckCircle2 className="w-4 h-4 mr-1" />
-              Models & Pragmas Configured
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center mb-4">
-              <Layers className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">React + Vite UI</h3>
-            <p className="text-sm text-slate-600 mb-3">
-              Modern frontend powered by Tailwind CSS, TypeScript, and Lucide icons running via <code className="text-violet-600 font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">npm run dev</code>.
-            </p>
-            <div className="flex items-center text-xs font-medium text-emerald-600">
-              <CheckCircle2 className="w-4 h-4 mr-1" />
-              Components & Typed Services Ready
-            </div>
-          </div>
-        </div>
-
-        {/* Stage 2: Resume Ingestion & Live ATS Audit */}
-        <section className="mb-12">
-          <div className="flex items-center space-x-2 mb-4">
-            <FileText className="w-5 h-5 text-indigo-600" />
-            <h2 className="text-xl font-bold text-slate-900">Resume Ingestion & Deterministic ATS Audit</h2>
-          </div>
+        {/* Resume Ingestion & ATS Audit Section */}
+        <section className="mb-10">
           <FileUpload onUploadSuccess={(data) => setUploadedResume(data)} />
         </section>
 
-        {/* Live Interactive API Test Sandbox */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-12">
+        {/* Career Copilot: Bullet Enhancer */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
             <div>
               <div className="flex items-center space-x-2">
                 <Sparkles className="w-5 h-5 text-indigo-600" />
-                <h2 className="text-xl font-bold text-slate-900">Career Copilot Live Sandbox</h2>
+                <h2 className="text-xl font-bold text-slate-900">Career Copilot: Bullet Point Enhancer</h2>
               </div>
               <p className="text-sm text-slate-500 mt-1">
-                Test the backend REST endpoint (<code className="font-mono text-xs bg-slate-100 px-1 py-0.5 rounded">POST /api/v1/copilot/rewrite-bullet</code>) live.
+                Transform weak bullet points into high-impact, quantified achievement statements using Google XYZ & STAR formulas.
               </p>
             </div>
             <button
@@ -165,7 +107,7 @@ export const App: React.FC = () => {
 
           <form onSubmit={handleTestRewrite} className="mt-6">
             <label className="block text-sm font-semibold text-slate-800 mb-2">
-              Enter a weak resume bullet point to test AI STAR / XYZ rephrasing:
+              Enter a resume bullet point to optimize:
             </label>
             <div className="flex flex-col sm:flex-row gap-3">
               <input
@@ -183,7 +125,7 @@ export const App: React.FC = () => {
                 {isRewriting ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin" />
-                    <span>Rewriting...</span>
+                    <span>Enhancing...</span>
                   </>
                 ) : (
                   <>
@@ -238,43 +180,6 @@ export const App: React.FC = () => {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Quick Launch Terminal Commands Card */}
-        <div className="bg-slate-900 rounded-2xl p-6 text-white shadow-xl">
-          <div className="flex items-center space-x-2 mb-4">
-            <Terminal className="w-5 h-5 text-indigo-400" />
-            <h3 className="text-base font-bold text-slate-100">Quick Start Commands</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider block mb-2">
-                Terminal 1: Backend Server
-              </span>
-              <pre className="font-mono text-xs text-slate-300 bg-black/40 p-3 rounded-lg overflow-x-auto">
-cd backend{'\n'}
-.\venv\Scripts\Activate.ps1{'\n'}
-python server.py
-              </pre>
-              <p className="text-xs text-slate-400 mt-2">
-                Swagger Docs will open at: <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">http://127.0.0.1:8000/docs</a>
-              </p>
-            </div>
-
-            <div className="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50">
-              <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block mb-2">
-                Terminal 2: Frontend Client
-              </span>
-              <pre className="font-mono text-xs text-slate-300 bg-black/40 p-3 rounded-lg overflow-x-auto">
-cd frontend{'\n'}
-npm install{'\n'}
-npm run dev
-              </pre>
-              <p className="text-xs text-slate-400 mt-2">
-                Application runs at: <a href="http://localhost:5173" target="_blank" rel="noreferrer" className="text-violet-400 hover:underline">http://localhost:5173</a>
-              </p>
-            </div>
-          </div>
         </div>
       </main>
 
