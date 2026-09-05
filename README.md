@@ -129,8 +129,8 @@ npm run dev
 | Stage | Milestone | Status | Details |
 | :--- | :--- | :---: | :--- |
 | **Stage 1** | **Foundation & Scaffolding** | ✅ Completed | FastAPI, `server.py`, SQLite WAL mode, models, React Vite app, clean config |
-| **Stage 2** | **Document Ingestion & ATS Audit** | 🔄 Next Up | Implement `PyMuPDF` / `python-docx` parsing & rule-based ATS audit |
-| **Stage 3** | **AI Engine & Semantic Scoring** | ⏳ Queued | LLM structured JSON integration, composite score calculations |
+| **Stage 2** | **Document Ingestion & ATS Audit** | ✅ Completed | `PyMuPDF` & `python-docx` parsing, SHA-256 caching, deterministic ATS audit |
+| **Stage 3** | **AI Engine & Semantic Scoring** | 🔄 Next Up | LLM structured JSON integration, composite score calculations |
 | **Stage 4** | **REST APIs & SQLite Persistence** | ⏳ Queued | Upload, evaluate, history, and copilot endpoints with caching |
 | **Stage 5** | **Interactive React Frontend** | ⏳ Queued | File upload, animated score gauges, skills matrix, copilot drawer |
 | **Stage 6** | **Testing & Production Polish** | ⏳ Queued | `pytest` test suite, verification checklist, end-to-end demo |

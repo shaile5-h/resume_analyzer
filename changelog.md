@@ -9,11 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned for Stage 2: Resume Ingestion & Deterministic ATS Audit
-- [ ] Multi-format text extraction pipeline (`PyMuPDF` for PDF, `python-docx` for Word).
-- [ ] Deterministic ATS parsability audit (table traps, multi-column reading orders, contact info checks).
-- [ ] File upload API endpoint (`POST /api/v1/resumes/upload`) with SHA-256 hash deduplication.
-
 ### Planned for Stage 3: AI Intelligence Engine & Semantic Scoring
 - [ ] Structured LLM service (Gemini / OpenAI API) with Pydantic JSON schema constraints.
 - [ ] Weighted ATS scoring formula (35% Skills, 30% Experience, 20% Semantic Relevance, 15% Formatting).
@@ -37,6 +32,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ ] End-to-end integration and user verification.
 
 ---
+
+## [0.3.0] - 2026-09-05
+
+### Added (Stage 2: Resume Ingestion & Deterministic ATS Audit Completed)
+- **Document Ingestion Service (`backend/app/services/parser.py`)**:
+  - `PyMuPDF` (`fitz`) multi-page text and coordinate extraction engine.
+  - `python-docx` Word extraction engine extracting paragraphs, tables, and lists.
+  - SHA-256 hash generation for instant file deduplication and response caching.
+  - Robust file validation handling file sizes up to 10MB and rejecting unsearchable/scanned PDFs or invalid MIME types.
+- **Deterministic ATS Parsability Auditor (`backend/app/services/ats_audit.py`)**:
+  - Regex-based contact extraction (Email, reachable Phone, LinkedIn URL, GitHub URL).
+  - Standard ATS section header detection (Experience, Education, Skills, Summary, Projects, Certifications).
+  - Quantified achievements and metric counter (`%`, `$`, multiplier patterns).
+  - Action verb density analyzer matching against 75+ industry action verbs.
+  - Quantitative 0-100 ATS Formatting Score calculation with prioritized recommendations.
+- **Backend API Endpoints (`backend/app/api/routes/resumes.py`)**:
+  - `POST /api/v1/resumes/upload`: Multipart upload with SHA-256 caching and immediate audit return.
+  - `GET /api/v1/resumes/{id}/audit`: Endpoint to fetch granular ATS breakdown for any stored resume.
+- **Frontend File Upload Component (`frontend/src/components/FileUpload.tsx`)**:
+  - High-UX drag-and-drop resume upload zone with live validation and loading state.
+  - Instant ATS Parsability Score badge, contact status pills, detected sections chips, action verbs, and prioritized formatting fixes.
+- **Automated Pytest Coverage (`backend/tests/test_api.py`)**:
+  - Added unit and integration tests for parsers, deterministic ATS scoring, extension rejection, and SHA-256 caching.
 
 ## [0.2.0] - 2026-09-05
 

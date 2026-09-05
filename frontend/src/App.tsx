@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
+import { FileUpload } from './components/FileUpload';
 import { resumeApi } from './services/api';
-import { BulletRewriteResponse } from './types';
+import { BulletRewriteResponse, ResumeUploadResponse } from './types';
 import {
   CheckCircle2,
   Terminal,
@@ -19,6 +20,7 @@ import {
 export const App: React.FC = () => {
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
   const [healthData, setHealthData] = useState<any>(null);
+  const [uploadedResume, setUploadedResume] = useState<ResumeUploadResponse | null>(null);
   
   // Interactive Copilot Test State
   const [sampleBullet, setSampleBullet] = useState('worked on python apis and fixed bugs for user login');
@@ -71,9 +73,9 @@ export const App: React.FC = () => {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-4 shadow-sm">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse"></span>
-            <span>Stage 1 Completed: Foundation & Scaffolding</span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-4 shadow-sm">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span>Stage 2 Completed: Resume Ingestion & Deterministic ATS Audit</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             AI-Powered Resume Analyzer <br />
@@ -130,6 +132,15 @@ export const App: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Stage 2: Resume Ingestion & Live ATS Audit */}
+        <section className="mb-12">
+          <div className="flex items-center space-x-2 mb-4">
+            <FileText className="w-5 h-5 text-indigo-600" />
+            <h2 className="text-xl font-bold text-slate-900">Resume Ingestion & Deterministic ATS Audit</h2>
+          </div>
+          <FileUpload onUploadSuccess={(data) => setUploadedResume(data)} />
+        </section>
 
         {/* Live Interactive API Test Sandbox */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-12">

@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
   HealthResponse,
   Resume,
+  ResumeUploadResponse,
+  ATSAudit,
   Analysis,
   BulletRewriteResponse,
   InterviewPrepResponse
@@ -24,7 +26,23 @@ export const resumeApi = {
     return response.data;
   },
 
-  // Resumes
+  // Resumes & ATS Ingestion
+  uploadResume: async (file: File): Promise<ResumeUploadResponse> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await apiClient.post<ResumeUploadResponse>('/api/v1/resumes/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+
+  getResumeAudit: async (resumeId: number): Promise<ATSAudit> => {
+    const response = await apiClient.get<ATSAudit>(`/api/v1/resumes/${resumeId}/audit`);
+    return response.data;
+  },
+
   listResumes: async (): Promise<Resume[]> => {
     const response = await apiClient.get<Resume[]>('/api/v1/resumes/');
     return response.data;
