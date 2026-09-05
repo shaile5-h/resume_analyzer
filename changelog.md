@@ -53,8 +53,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Frontend File Upload Component (`frontend/src/components/FileUpload.tsx`)**:
   - High-UX drag-and-drop resume upload zone with live validation and loading state.
   - Instant ATS Parsability Score badge, contact status pills, detected sections chips, action verbs, and prioritized formatting fixes.
-- **Automated Pytest Coverage (`backend/tests/test_api.py`)**:
+- **Automated Pytest Coverage & Integration Tests (`backend/tests/test_api.py`)**:
   - Added unit and integration tests for parsers, deterministic ATS scoring, extension rejection, and SHA-256 caching.
+  - Added full test suite verifying all 6 industry-standard sample resumes (`.pdf` and `.docx`).
+- **Sample Test Resumes (`sample_resumes/` & `backend/tests/sample_resumes/`)**:
+  - `1_Senior_FullStack_Engineer.pdf` (High-score ATS optimized PDF)
+  - `2_Data_Scientist_ML_Engineer.pdf` (High-score ML/AI specialist PDF)
+  - `3_DevOps_Cloud_Architect.docx` (High-score Cloud/Kubernetes Word document)
+  - `4_Junior_Frontend_Developer.docx` (Mid-level React/TypeScript Word document)
+  - `5_Product_Manager_Tech.pdf` (Metrics-driven Product Management PDF)
+  - `6_Needs_Improvement_EdgeCase.pdf` (Low-score edge case with missing headers & contact fields)
 
 ## [0.2.0] - 2026-09-05
 

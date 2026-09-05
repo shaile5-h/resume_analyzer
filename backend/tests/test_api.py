@@ -122,3 +122,40 @@ def test_upload_valid_pdf_and_caching():
     audit_res = client.get(f"/api/v1/resumes/{resume_id}/audit")
     assert audit_res.status_code == 200
     assert audit_res.json()["formatting_score"] > 60
+
+def test_integration_sample_resumes():
+    """Integration test verifying all 6 realistic industry sample resumes (.pdf & .docx)."""
+    import os
+    samples_dir = os.path.join(os.path.dirname(__file__), "sample_resumes")
+    assert os.path.exists(samples_dir), "Sample resumes directory must exist"
+    
+    files = sorted(os.listdir(samples_dir))
+    assert len(files) == 6, f"Expected 6 sample resumes, found {len(files)}"
+
+    for filename in files:
+        filepath = os.path.join(samples_dir, filename)
+        mime = "application/pdf" if filename.endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        
+        with open(filepath, "rb") as f:
+            content = f.read()
+        
+        res = client.post("/api/v1/resumes/upload", files={"file": (filename, content, mime)})
+        assert res.status_code == 201, f"Failed uploading {filename}: {res.text}"
+        data = res.json()
+        assert data["word_count"] > 30, f"Word count too low for {filename}"
+        assert data["audit"]["formatting_score"] > 0
+        
+        # Test specific expectations
+        if "1_Senior_FullStack" in filename:
+            assert data["audit"]["formatting_score"] >= 80
+            assert data["audit"]["contact_info"]["email"] is not None
+            assert "Experience" in data["audit"]["sections"]["detected"]
+        elif "3_DevOps" in filename:
+            assert data["file_type"] == "docx"
+            assert data["audit"]["formatting_score"] >= 75
+        elif "6_Needs_Improvement" in filename:
+            # Edge case has missing contact info and non-standard sections
+            assert data["audit"]["formatting_score"] < 65
+            assert data["audit"]["contact_info"]["email"] is None
+            assert len(data["audit"]["recommendations"]) >= 2
+

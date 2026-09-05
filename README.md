@@ -122,6 +122,15 @@ npm run dev
 
 - **Application Dashboard**: [`http://localhost:5173`](http://localhost:5173)
 
+### 3. Sample Resumes for Testing
+6 realistic industry-standard test resumes in `.pdf` and `.docx` formats are ready in [`sample_resumes/`](file:///C:/Users/HACKATHIN29/Desktop/Shailesh%20Yadav%20Hack/sample_resumes):
+- `1_Senior_FullStack_Engineer.pdf` (High-score Full Stack Engineer)
+- `2_Data_Scientist_ML_Engineer.pdf` (Machine Learning / AI Scientist)
+- `3_DevOps_Cloud_Architect.docx` (Cloud & Kubernetes Architect in Word format)
+- `4_Junior_Frontend_Developer.docx` (Frontend Developer in Word format)
+- `5_Product_Manager_Tech.pdf` (Metrics-driven Product Manager)
+- `6_Needs_Improvement_EdgeCase.pdf` (Edge case testing warnings for missing headers & contacts)
+
 ---
 
 ## 🧭 Project Roadmap & Stage Tracker
