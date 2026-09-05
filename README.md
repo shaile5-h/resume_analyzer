@@ -131,6 +131,20 @@ npm run dev
 - `5_Product_Manager_Tech.pdf` (Metrics-driven Product Manager)
 - `6_Needs_Improvement_EdgeCase.pdf` (Edge case testing warnings for missing headers & contacts)
 
+### 4. Running Automated Tests
+Run unit tests, integration tests, or the full suite via Pytest:
+```powershell
+# Run full test suite (27 tests)
+cd backend
+python -m pytest tests/ -v
+
+# Run only unit tests
+python -m pytest tests/unit/ -v
+
+# Run only integration tests
+python -m pytest tests/integration/ -v
+```
+
 ---
 
 ## 🧭 Project Roadmap & Stage Tracker

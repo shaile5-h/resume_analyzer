@@ -79,10 +79,10 @@ def detect_sections(text: str) -> Dict[str, List[str]]:
 def count_quantifiable_metrics(text: str) -> List[str]:
     """Find metrics indicating quantified achievements (%, $, numbers, multipliers)."""
     metric_patterns = [
-        r"\b\d+%\b",                                       # Percentages: 25%, 100%
+        r"\b\d+(?:\.\d+)?%",                                  # Percentages: 25%, 35.5%
         r"[\$€£]\s?\d+(?:,\d{3})*(?:\.\d+)?(?:\s?[kKmMbB])?", # Currency: $50k, $1.2M
-        r"\b\d+(?:\.\d+)?\s?[kKmMbB]\b",                  # Quantities: 10k, 2M
-        r"\b\d+\s*(?:x|times)\b",                         # Multipliers: 5x, 10 times
+        r"\b\d+(?:\.\d+)?\s?[kKmMbB]\b",                     # Quantities: 10k, 2.5M
+        r"\b\d+\s*(?:x|times)\b",                            # Multipliers: 5x, 10 times
         r"\b\d+\+?\s+(?:users|clients|customers|requests|queries|downloads|endpoints|features)\b" # Quantified items
     ]
     matches = []

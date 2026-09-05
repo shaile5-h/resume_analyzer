@@ -53,9 +53,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Frontend File Upload Component (`frontend/src/components/FileUpload.tsx`)**:
   - High-UX drag-and-drop resume upload zone with live validation and loading state.
   - Instant ATS Parsability Score badge, contact status pills, detected sections chips, action verbs, and prioritized formatting fixes.
-- **Automated Pytest Coverage & Integration Tests (`backend/tests/test_api.py`)**:
-  - Added unit and integration tests for parsers, deterministic ATS scoring, extension rejection, and SHA-256 caching.
-  - Added full test suite verifying all 6 industry-standard sample resumes (`.pdf` and `.docx`).
+- **Modular Unit & Integration Test Architecture (`backend/tests/`)**:
+  - `backend/tests/conftest.py`: Shared pytest session fixtures for FastAPI client, sample resume paths, and mock data.
+  - `backend/tests/unit/`: Dedicated unit test suite with 17 tests covering `parser.py`, `ats_audit.py`, and Pydantic schemas.
+  - `backend/tests/integration/`: Dedicated integration test suite with 10 tests covering the Resumes API (with all 6 sample files), Copilot API, and System endpoints.
+  - 100% test pass rate (27/27 passed).
 - **Sample Test Resumes (`sample_resumes/` & `backend/tests/sample_resumes/`)**:
   - `1_Senior_FullStack_Engineer.pdf` (High-score ATS optimized PDF)
   - `2_Data_Scientist_ML_Engineer.pdf` (High-score ML/AI specialist PDF)
