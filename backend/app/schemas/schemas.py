@@ -29,6 +29,47 @@ class ResumeResponse(ResumeBase):
         from_attributes = True
 
 # ==========================================
+# ATS Audit Schemas
+# ==========================================
+class ContactInfoSchema(BaseModel):
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    linkedin: Optional[str] = None
+    github: Optional[str] = None
+
+class SectionAuditSchema(BaseModel):
+    detected: List[str]
+    missing: List[str]
+
+class ScoreBreakdownSchema(BaseModel):
+    contact_score: float
+    section_score: float
+    length_score: float
+    content_score: float
+
+class ATSAuditResponse(BaseModel):
+    formatting_score: float
+    breakdown: ScoreBreakdownSchema
+    contact_info: ContactInfoSchema
+    sections: SectionAuditSchema
+    word_count: int
+    page_count: int
+    file_type: str
+    quantifiable_metrics: List[str]
+    action_verbs: List[str]
+    recommendations: List[Dict[str, Any]]
+
+class ResumeUploadResponse(BaseModel):
+    resume_id: int
+    filename: str
+    file_type: str
+    file_hash: str
+    page_count: int
+    word_count: int
+    is_cached: bool
+    audit: ATSAuditResponse
+
+# ==========================================
 # Job Description Schemas
 # ==========================================
 class JobDescriptionCreate(BaseModel):

@@ -2,6 +2,8 @@
 from app.schemas.schemas import (
     HealthResponse,
     ResumeResponse,
+    ResumeUploadResponse,
+    ATSAuditResponse,
     JobDescriptionCreate,
     JobDescriptionResponse,
     RecommendationItem,
@@ -16,6 +18,8 @@ from app.schemas.schemas import (
 __all__ = [
     "HealthResponse",
     "ResumeResponse",
+    "ResumeUploadResponse",
+    "ATSAuditResponse",
     "JobDescriptionCreate",
     "JobDescriptionResponse",
     "RecommendationItem",
