@@ -9,14 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned for Stage 1: Foundation & Scaffolding
-- [ ] Initialize root configuration (`.gitignore`, `.env.example`, `.env`).
-- [ ] Initialize `backend/` modular structure (`app/core/`, `app/db/`, `app/models/`, `app/schemas/`, `app/services/`, `app/api/`).
-- [ ] Setup `backend/requirements.txt` and virtual environment (`venv`).
-- [ ] Create `backend/server.py` entrypoint configured to run FastAPI with Uvicorn on `http://127.0.0.1:8000`.
-- [ ] Setup SQLite engine with WAL (Write-Ahead Logging) mode and foreign key constraints in `backend/app/db/session.py`.
-- [ ] Initialize `frontend/` (React + TypeScript + Vite + Tailwind CSS + Lucide Icons).
-
 ### Planned for Stage 2: Resume Ingestion & Deterministic ATS Audit
 - [ ] Multi-format text extraction pipeline (`PyMuPDF` for PDF, `python-docx` for Word).
 - [ ] Deterministic ATS parsability audit (table traps, multi-column reading orders, contact info checks).
@@ -45,6 +37,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ ] End-to-end integration and user verification.
 
 ---
+
+## [0.2.0] - 2026-09-05
+
+### Added (Stage 1: Foundation & Scaffolding Completed)
+- **Root Configuration**: Standardized `.gitignore`, `.env.example`, and local `.env` with configurable parameters for AI providers and SQLite database path.
+- **Backend Architecture (`backend/`)**:
+  - `backend/server.py`: Dedicated entrypoint running Uvicorn at `http://127.0.0.1:8000` with Swagger UI at `/docs`.
+  - `backend/app/main.py`: Configured FastAPI application with CORS middleware, health check endpoint (`/health`), and `/api/v1` router.
+  - `backend/app/core/config.py`: Pydantic settings loading environment configurations and auto-creating upload directories.
+  - `backend/app/db/session.py`: SQLite engine configured with **WAL mode** (`PRAGMA journal_mode=WAL;`), synchronous=NORMAL, foreign keys enabled, and sessionmaker.
+  - `backend/app/models/models.py`: SQLAlchemy database models (`Resume`, `JobDescription`, `Analysis`) with foreign key constraints, timestamps, and cascade deletions.
+  - `backend/app/schemas/schemas.py`: Pydantic v2 schemas for health status, resumes, job descriptions, analyses, and career copilot requests/responses.
+  - `backend/app/api/router.py` & routes (`resumes.py`, `analyses.py`, `copilot.py`): Clean modular routing for resume listing, evaluation history, and interactive STAR/XYZ bullet point rewriting.
+  - `backend/tests/test_api.py`: Automated Pytest suite covering root endpoints, health status, and copilot endpoints.
+  - `backend/requirements.txt`: Clean, non-redundant dependency manifest.
+- **Frontend Architecture (`frontend/`)**:
+  - Initialized modern React 18 + Vite + TypeScript application.
+  - Configured Tailwind CSS with custom brand palette and typography.
+  - Setup typed API service layer in `frontend/src/services/api.ts` connecting to FastAPI backend.
+  - Built sticky header component `frontend/src/components/Navbar.tsx` featuring real-time backend health ping indicator and Swagger docs shortcut.
+  - Built interactive welcome dashboard `frontend/src/App.tsx` featuring an interactive Career Copilot sandbox to test bullet enhancement immediately against the live backend API.
 
 ## [0.1.0] - 2026-09-05
 
